@@ -96,7 +96,7 @@ script = ExtResource("1_radxw")
 scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_cqgxg")
 animation = &"idle"
-frame_progress = 0.246656
+frame_progress = 0.226416
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 3)
@@ -112,4 +112,11 @@ one_shot = true
 
 [node name="WallJumpBufferTimer" type="Timer" parent="."]
 wait_time = 0.1
+one_shot = true
+
+[node name="DashDurationTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true

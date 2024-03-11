@@ -5,6 +5,8 @@ extends CharacterBody2D
 @onready var coyote_timer = $CoyoteTimer
 @onready var jump_buffer_timer = $JumpBufferTimer
 @onready var wall_jump_buffer_timer = $WallJumpBufferTimer
+@onready var dash_duration_timer = $DashDurationTimer
+@onready var dash_cooldown_timer = $DashCooldownTimer
 
 @export_group("Movement")
 ## Maximum speed reachable by player
@@ -44,20 +46,41 @@ extends CharacterBody2D
 ## Determains the minumum jump heighet a player can reach if they barely tap the jump button (and variable_jump_height is true)
 @export var minimum_jump_height := 100
 
+@export_group("Dash")
+## Dashing Distance
+@export var dash_distance := 200
+## Amount of time it takes to dash until specified distance
+@export var time_to_dash := 0.1
+## Amount of time to wait until player can dash again
+@export var dash_cooldown := 1.0
+
 @export_group("Wall Jump")
 ## Horizontal Force
-@export var horizontal_force := 800.0
+@export var horizontal_force := 400.0
 ## Gravity Reduction Ratio
 @export var gravity_reduction := 0.2
 
 @onready var jump_velocity : float = (2.0 * jump_height) / jump_time_to_peak * -1
 @onready var jump_gravity : float = (-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak) * -1
 @onready var fall_gravity : float = (-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent) * -1
+@onready var dash_velocity : float = dash_distance / time_to_dash
+@onready var cur_direction : float = 1
+@onready var can_double_jump : bool = true
 
 func _ready():
 	coyote_timer.wait_time = coyote_timer_value
 	jump_buffer_timer.wait_time = jump_buffer_timer_value
 	wall_jump_buffer_timer.wait_time = wall_jump_buffer_timer_value
+	dash_duration_timer.wait_time = time_to_dash
+	dash_cooldown_timer.wait_time = dash_cooldown + time_to_dash
+	
+# Check if currently dashing
+func _is_dashing():
+	return dash_duration_timer.time_left > 0.0
+
+# Check if dash is on cooldown
+func _dash_is_on_cd():
+	return dash_cooldown_timer.time_left > 0.0
 
 # Sets the gravity depending on the context
 func _get_gravity(_velocity):
@@ -91,13 +114,24 @@ func _set_sprite_direction(direction: int) -> void:
 
 	if direction < 0.0:
 		$AnimatedSprite2D.flip_h = true
-		
+
+func _update_current_direction():
+	if Input.is_action_just_pressed("Move_Left"):
+		cur_direction = -1
+	elif Input.is_action_just_pressed("Move_Right"):
+		cur_direction = 1
+
 func _physics_process(delta):
+	var is_not_wall_jump = true
+	if _is_dashing():
+		move_and_slide()
+		return
 	if not is_on_floor():
 		velocity.y += _get_gravity(velocity) * delta
-		wall_jump()
+		is_not_wall_jump = not wall_jump()
 		_get_movement(air_resistance, air_acceleration, delta)
 	else:
+		can_double_jump = true
 		if coyote_timer.is_stopped():
 			coyote_timer.start()
 		if jump_buffer_timer.time_left > 0.0:
@@ -106,12 +140,16 @@ func _physics_process(delta):
 		_get_movement(friction, acceleration, delta)
 	
 	_set_sprite_direction(sign(velocity.x))
+	_update_current_direction()
 	
-	if Input.is_action_just_pressed("Jump"):
+	if Input.is_action_just_pressed("Jump") and is_not_wall_jump:
 		jump()
 	
 	if Input.is_action_just_released("Jump"):
 		jump_cut()
+		
+	if Input.is_action_just_pressed("Dash"):
+		dash()
 	
 	if velocity != Vector2.ZERO:
 		$AnimatedSprite2D.play("run")
@@ -125,10 +163,19 @@ func jump():
 	if coyote_timer.time_left > 0.0:
 		coyote_timer.stop()
 		velocity.y = jump_velocity
+	elif can_double_jump:
+		can_double_jump = false
+		velocity.y = jump_velocity
 	
 	if _get_gravity(velocity) == fall_gravity:
 		jump_buffer_timer.start()
 
+func dash():
+	if not _is_dashing() and not _dash_is_on_cd():
+		dash_duration_timer.start()
+		dash_cooldown_timer.start()
+		velocity.x = dash_velocity * cur_direction
+		velocity.y = 0
 
 # Stops jump acceleration if variable_jump_height is enabled
 func jump_cut():
@@ -138,12 +185,14 @@ func jump_cut():
 	if velocity.y < minimum_jump_height * up_direction.y:
 		velocity.y = 0
 
-func wall_jump():
+func wall_jump() -> bool:
 	var direction = Input.get_axis("Move_Left", "Move_Right")
 	if direction and is_on_wall() and wall_jump_buffer_timer.is_stopped():
 		wall_jump_buffer_timer.start()
+		can_double_jump = true
 	if Input.is_action_just_pressed("Jump") and (wall_jump_buffer_timer.time_left > 0.0):
 		wall_jump_buffer_timer.stop()
 		velocity.x = sign(velocity.x) * horizontal_force * -1
 		velocity.y = jump_velocity
-		print("Velocity x wall jump: " + str(velocity.x))
+		return true
+	return false
