@@ -8,6 +8,8 @@ extends CharacterBody2D
 @onready var dash_duration_timer = $DashDurationTimer
 @onready var dash_cooldown_timer = $DashCooldownTimer
 
+@export var used_sprite_frame: SpriteFrames
+
 @export_group("Movement")
 ## Maximum speed reachable by player
 @export_range(0, 500) var max_speed := 400.0
@@ -68,6 +70,7 @@ extends CharacterBody2D
 @onready var can_double_jump : bool = true
 
 func _ready():
+	$AnimatedSprite2D.set_sprite_frames(used_sprite_frame)
 	coyote_timer.wait_time = coyote_timer_value
 	jump_buffer_timer.wait_time = jump_buffer_timer_value
 	wall_jump_buffer_timer.wait_time = wall_jump_buffer_timer_value
