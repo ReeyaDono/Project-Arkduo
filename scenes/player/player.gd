@@ -124,6 +124,9 @@ func _update_current_direction():
 func _physics_process(delta):
 	var is_not_wall_jump = true
 	if _is_dashing():
+		if velocity.x == 0.0:
+			dash_duration_timer.stop()
+			dash_cooldown_timer.start(dash_cooldown)
 		move_and_slide()
 		return
 	if not is_on_floor():
