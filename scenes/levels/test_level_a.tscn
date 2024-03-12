@@ -1,9 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b2kerfjhnv41m"]
+[gd_scene load_steps=4 format=3 uid="uid://b2kerfjhnv41m"]
 
 [ext_resource type="TileSet" uid="uid://conmvmndb1efa" path="res://scenes/levels/tileset1.tres" id="1_15xgh"]
+[ext_resource type="PackedScene" uid="uid://drqmn0o7kbgxl" path="res://scenes/backgrounds/background_a.tscn" id="1_h2r5w"]
 [ext_resource type="PackedScene" uid="uid://bkgsh5rwj7v5f" path="res://scenes/player/player.tscn" id="2_pf50w"]
 
 [node name="TestLevelA" type="Node2D"]
+
+[node name="BackgroundA" parent="." instance=ExtResource("1_h2r5w")]
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)

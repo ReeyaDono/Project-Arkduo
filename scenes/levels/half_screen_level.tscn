@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://bkfskmp1p3kpo"]
+
+[ext_resource type="PackedScene" uid="uid://b2kerfjhnv41m" path="res://scenes/levels/test_level_a.tscn" id="1_8cpcm"]
+[ext_resource type="PackedScene" uid="uid://cq5vkq5xlfaaf" path="res://scenes/levels/test_level_b.tscn" id="2_8h5yg"]
+
+[node name="HalfScreenLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport" type="SubViewport" parent="HBoxContainer/SubViewportContainer"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 720)
+render_target_update_mode = 4
+
+[node name="TestLevelA" parent="HBoxContainer/SubViewportContainer/SubViewport" instance=ExtResource("1_8cpcm")]
+
+[node name="SubViewportContainer2" type="SubViewportContainer" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="SubViewport2" type="SubViewport" parent="HBoxContainer/SubViewportContainer2"]
+handle_input_locally = false
+canvas_item_default_texture_filter = 0
+size = Vector2i(640, 720)
+render_target_update_mode = 4
+
+[node name="test_level_b" parent="HBoxContainer/SubViewportContainer2/SubViewport2" instance=ExtResource("2_8h5yg")]
+position = Vector2(-640, 0)

@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://drqmn0o7kbgxl"]
+
+[ext_resource type="Texture2D" uid="uid://bfj1rcwnlhdl8" path="res://assets/Wasteland_Sky.png" id="1_wfttv"]
+[ext_resource type="Texture2D" uid="uid://bm0kismw7dfmq" path="res://assets/Wasteland_Mountains_1.png" id="2_rqpqv"]
+[ext_resource type="Texture2D" uid="uid://cl4kmx3cea1c6" path="res://assets/Wasteland_Mountains_2.png" id="3_meefs"]
+
+[node name="BackgroundA" type="ParallaxBackground"]
+
+[node name="WastelandSky" type="Sprite2D" parent="."]
+position = Vector2(640, 320)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_wfttv")
+metadata/_edit_lock_ = true
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="."]
+motion_scale = Vector2(0.5, 0.5)
+motion_mirroring = Vector2(1280, 0)
+
+[node name="WastelandMountains1" type="Sprite2D" parent="ParallaxLayer"]
+position = Vector2(640, 400)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_rqpqv")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="."]
+motion_mirroring = Vector2(1280, 0)
+
+[node name="WastelandMountains2" type="Sprite2D" parent="ParallaxLayer2"]
+position = Vector2(640, 400)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("3_meefs")

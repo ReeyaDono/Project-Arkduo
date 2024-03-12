@@ -1,0 +1,46 @@
+[gd_scene load_steps=8 format=3 uid="uid://dasohii0w60dg"]
+
+[ext_resource type="Script" path="res://scenes/levels/game_display.gd" id="1_uuggt"]
+[ext_resource type="Shader" path="res://shaders/game_display.gdshader" id="2_8kha3"]
+[ext_resource type="PackedScene" uid="uid://b2kerfjhnv41m" path="res://scenes/levels/test_level_a.tscn" id="3_x8bo3"]
+[ext_resource type="PackedScene" uid="uid://cq5vkq5xlfaaf" path="res://scenes/levels/test_level_b.tscn" id="4_7d2y6"]
+[ext_resource type="PackedScene" uid="uid://ctn5fc4681sgo" path="res://scenes/levels/circle_transition.tscn" id="5_fsouq"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_vpbxv"]
+shader = ExtResource("2_8kha3")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_pwk0w"]
+
+[node name="GameDisplay" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_uuggt")
+
+[node name="View" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_vpbxv")
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = SubResource("CanvasTexture_pwk0w")
+
+[node name="ViewportA" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+
+[node name="TestLevelA" parent="ViewportA" instance=ExtResource("3_x8bo3")]
+
+[node name="ViewportB" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+
+[node name="test_level_b" parent="ViewportB" instance=ExtResource("4_7d2y6")]
+
+[node name="ViewportMask" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+
+[node name="circle_transition" parent="ViewportMask" instance=ExtResource("5_fsouq")]
