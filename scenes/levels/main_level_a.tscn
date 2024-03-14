@@ -1,14 +1,22 @@
-[gd_scene load_steps=9 format=3 uid="uid://c7qmgopekjlcb"]
+[gd_scene load_steps=13 format=3 uid="uid://c7qmgopekjlcb"]
 
 [ext_resource type="PackedScene" uid="uid://drqmn0o7kbgxl" path="res://scenes/backgrounds/background_a.tscn" id="1_r3fnl"]
 [ext_resource type="TileSet" uid="uid://conmvmndb1efa" path="res://scenes/levels/tileset1.tres" id="2_i8ydv"]
 [ext_resource type="PackedScene" uid="uid://bkgsh5rwj7v5f" path="res://scenes/player/player.tscn" id="3_ak11n"]
 [ext_resource type="Script" path="res://scenes/levels/MainLevelCamera.gd" id="3_psxih"]
+[ext_resource type="PackedScene" uid="uid://bveg6nrvy23pa" path="res://scenes/levels/bossfight/boss_fight.tscn" id="4_tp3lw"]
 [ext_resource type="Texture2D" uid="uid://cdgifyhljyvho" path="res://assets/tile262.png" id="4_wmytd"]
+[ext_resource type="Script" path="res://scenes/levels/BossTrigger.gd" id="5_5w64o"]
 [ext_resource type="Texture2D" uid="uid://bp472lr4csx4c" path="res://assets/starry_night_by_quintino_pixels/tile037.png" id="5_j4syf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xs2ng"]
 size = Vector2(125, 125)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iemnr"]
+size = Vector2(82, 98)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a6rny"]
+size = Vector2(1904, 170)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq8tv"]
 size = Vector2(48, 48)
@@ -16,6 +24,7 @@ size = Vector2(48, 48)
 [node name="main_level_a" type="Node2D"]
 
 [node name="BackgroundA" parent="." instance=ExtResource("1_r3fnl")]
+scroll_offset = Vector2(-4827.29, 1546.58)
 
 [node name="TileMap" type="TileMap" parent="."]
 scale = Vector2(3, 3)
@@ -113,12 +122,40 @@ collision_mask = 2
 position = Vector2(5736, -1128)
 shape = SubResource("RectangleShape2D_xs2ng")
 
+[node name="Area8" type="Area2D" parent="CameraAreaChange"]
+collision_layer = 16
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraAreaChange/Area8"]
+position = Vector2(6312, -1120)
+shape = SubResource("RectangleShape2D_xs2ng")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(6304, -1360)
 script = ExtResource("3_psxih")
 
+[node name="BossFight" parent="." instance=ExtResource("4_tp3lw")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(6304, -1360)
+
+[node name="BossTrigger" type="Area2D" parent="."]
+collision_mask = 2
+script = ExtResource("5_5w64o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossTrigger"]
+position = Vector2(6312, -1112)
+shape = SubResource("RectangleShape2D_iemnr")
+
 [node name="Player" parent="." instance=ExtResource("3_ak11n")]
 position = Vector2(5712, -1136)
+
+[node name="FireBallDeadZone" type="StaticBody2D" parent="."]
+position = Vector2(6320, -888)
+collision_layer = 128
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FireBallDeadZone"]
+position = Vector2(-128, -75)
+shape = SubResource("RectangleShape2D_a6rny")
 
 [node name="BlockA" type="AnimatableBody2D" parent="."]
 position = Vector2(2904, 24)
@@ -523,3 +560,5 @@ metadata/_edit_lock_ = true
 [connection signal="body_entered" from="CameraAreaChange/Area5r" to="Camera2D" method="_on_area_5r_body_entered"]
 [connection signal="body_entered" from="CameraAreaChange/Area6" to="Camera2D" method="_on_area_6_body_entered"]
 [connection signal="body_entered" from="CameraAreaChange/Area7" to="Camera2D" method="_on_area_7_body_entered"]
+[connection signal="body_entered" from="CameraAreaChange/Area8" to="Camera2D" method="_on_area_8_body_entered"]
+[connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

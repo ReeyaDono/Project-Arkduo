@@ -7,6 +7,7 @@ extends Camera2D
 @onready var area5 = Vector2(4720, -408)
 @onready var area6 = Vector2(5680, -1008)
 @onready var area7 = Vector2(6304, -1216)
+@onready var area8 = Vector2(6304, -1360)
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -82,3 +83,11 @@ func _on_area_7_body_entered(body):
 	if body.name == "Player":
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", area7, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)
+
+
+func _on_area_8_body_entered(body):
+	if body.name == "Player":
+		$"../CameraAreaChange/Area7".monitoring = false
+		$"../CameraAreaChange/Area8".monitoring = false
+		var tween = get_tree().create_tween()
+		tween.tween_property(self, "position", area8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

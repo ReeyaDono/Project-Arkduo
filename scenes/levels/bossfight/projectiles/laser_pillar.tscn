@@ -24,7 +24,7 @@ shader_parameter/fixed_edge_size = 0.041
 shader_parameter/noise_scale = Vector2(1, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ecp8g"]
-size = Vector2(16, 720)
+size = Vector2(16, 1024)
 
 [node name="LaserPillar" type="Area2D"]
 collision_layer = 32
@@ -34,12 +34,12 @@ script = ExtResource("1_mw85c")
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_77tb8")
 offset_left = 136.0
-offset_right = 856.0
+offset_right = 1159.0
 offset_bottom = 270.0
 rotation = 1.5708
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 360)
+position = Vector2(0, 512)
 shape = SubResource("RectangleShape2D_ecp8g")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
