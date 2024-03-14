@@ -1,17 +1,20 @@
 extends Node2D
 
 @export var type_toggle: bool = false
+@export var boss_seed: int = 0
+@onready var rng = RandomNumberGenerator.new()
 var left_start_pos = Vector2(-672, -360)
 var right_start_pos = Vector2(672, -360)
 
 const laser_pillar_scene = preload("res://scenes/levels/bossfight/projectiles/laser_pillar.tscn")
 	
 func _random_choice():
-	var rng = RandomNumberGenerator.new()
-	rng.randomize()
 	if rng.randi_range(0, 1) == 0:
 		return "A"
 	return "B"
+	
+func init_seed():
+	rng.seed = boss_seed
 	
 func spawn_pillar_right():
 	var type = _random_choice()

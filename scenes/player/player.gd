@@ -7,6 +7,7 @@ extends CharacterBody2D
 @onready var wall_jump_buffer_timer = $WallJumpBufferTimer
 @onready var dash_duration_timer = $DashDurationTimer
 @onready var dash_cooldown_timer = $DashCooldownTimer
+@onready var switch_cooldown_timer = $SwitchCooldownTimer
 
 @export var used_sprite_frame: SpriteFrames
 
@@ -76,6 +77,7 @@ func _ready():
 	wall_jump_buffer_timer.wait_time = wall_jump_buffer_timer_value
 	dash_duration_timer.wait_time = time_to_dash
 	dash_cooldown_timer.wait_time = dash_cooldown + time_to_dash
+	switch_cooldown_timer.wait_time = 1
 	
 # Check if currently dashing
 func _is_dashing():
@@ -84,6 +86,10 @@ func _is_dashing():
 # Check if dash is on cooldown
 func _dash_is_on_cd():
 	return dash_cooldown_timer.time_left > 0.0
+	
+# Check if switch is on cooldown
+func _switch_is_on_cd():
+	return switch_cooldown_timer.time_left > 0.0
 
 # Sets the gravity depending on the context
 func _get_gravity(_velocity):
@@ -126,6 +132,7 @@ func _update_current_direction():
 
 func _physics_process(delta):
 	var is_not_wall_jump = true
+	switch()
 	if _is_dashing():
 		if velocity.x == 0.0:
 			dash_duration_timer.stop()
@@ -182,6 +189,12 @@ func dash():
 		dash_cooldown_timer.start()
 		velocity.x = dash_velocity * cur_direction
 		velocity.y = 0
+		
+func switch():
+	if Input.is_action_just_pressed("Switch") and not _switch_is_on_cd():
+		set_collision_mask_value(3, not get_collision_mask_value(3))
+		set_collision_mask_value(4, not get_collision_mask_value(4))
+		switch_cooldown_timer.start()
 
 # Stops jump acceleration if variable_jump_height is enabled
 func jump_cut():

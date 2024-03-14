@@ -40,3 +40,7 @@ one_shot = true
 
 [node name="DashCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="SwitchCooldownTimer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

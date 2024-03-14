@@ -1,6 +1,7 @@
-[gd_scene load_steps=13 format=3 uid="uid://c7qmgopekjlcb"]
+[gd_scene load_steps=15 format=3 uid="uid://c7qmgopekjlcb"]
 
 [ext_resource type="PackedScene" uid="uid://drqmn0o7kbgxl" path="res://scenes/backgrounds/background_a.tscn" id="1_r3fnl"]
+[ext_resource type="Script" path="res://scenes/levels/main_level_a.gd" id="1_upakd"]
 [ext_resource type="TileSet" uid="uid://conmvmndb1efa" path="res://scenes/levels/tileset1.tres" id="2_i8ydv"]
 [ext_resource type="PackedScene" uid="uid://bkgsh5rwj7v5f" path="res://scenes/player/player.tscn" id="3_ak11n"]
 [ext_resource type="Script" path="res://scenes/levels/MainLevelCamera.gd" id="3_psxih"]
@@ -18,10 +19,14 @@ size = Vector2(82, 98)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_a6rny"]
 size = Vector2(1904, 170)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q632c"]
+size = Vector2(210, 665)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eq8tv"]
 size = Vector2(48, 48)
 
 [node name="main_level_a" type="Node2D"]
+script = ExtResource("1_upakd")
 
 [node name="BackgroundA" parent="." instance=ExtResource("1_r3fnl")]
 scroll_offset = Vector2(-4827.29, 1546.58)
@@ -147,15 +152,22 @@ position = Vector2(6312, -1112)
 shape = SubResource("RectangleShape2D_iemnr")
 
 [node name="Player" parent="." instance=ExtResource("3_ak11n")]
-position = Vector2(5712, -1136)
+position = Vector2(312, 408)
 
 [node name="FireBallDeadZone" type="StaticBody2D" parent="."]
-position = Vector2(6320, -888)
+position = Vector2(6200, -960)
 collision_layer = 128
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireBallDeadZone"]
-position = Vector2(-128, -75)
 shape = SubResource("RectangleShape2D_a6rny")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="FireBallDeadZone"]
+position = Vector2(-648, -428.5)
+shape = SubResource("RectangleShape2D_q632c")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="FireBallDeadZone"]
+position = Vector2(848, -432)
+shape = SubResource("RectangleShape2D_q632c")
 
 [node name="BlockA" type="AnimatableBody2D" parent="."]
 position = Vector2(2904, 24)

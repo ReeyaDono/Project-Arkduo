@@ -87,7 +87,7 @@ func _on_area_7_body_entered(body):
 
 func _on_area_8_body_entered(body):
 	if body.name == "Player":
-		$"../CameraAreaChange/Area7".monitoring = false
-		$"../CameraAreaChange/Area8".monitoring = false
+		$"../CameraAreaChange/Area7".set_deferred("monitoring", false)
+		$"../CameraAreaChange/Area8".set_deferred("monitoring", false)
 		var tween = get_tree().create_tween()
 		tween.tween_property(self, "position", area8, 0.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_SINE)

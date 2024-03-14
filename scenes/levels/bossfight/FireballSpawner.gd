@@ -1,5 +1,8 @@
 extends Node2D
 
+@export var boss_seed: int = 0
+@onready var rng = RandomNumberGenerator.new()
+
 var pos1 = Vector2(-96, -16)
 var pos2 = Vector2(0, 32)
 var pos3 = Vector2(96, -16)
@@ -21,7 +24,9 @@ func _create_fireball(pos: Vector2, angle: float):
 	fireball.start_moving()
 
 func spawn_fireball():
-	var rng = RandomNumberGenerator.new()
 	_create_fireball(pos1, rng.randf_range(90, 91))
 	_create_fireball(pos2, rng.randf_range(89, 90))
 	_create_fireball(pos3, rng.randf_range(69, 70))
+
+func init_seed():
+	rng.seed = boss_seed
