@@ -114,11 +114,11 @@ position = Vector2(5736, -1128)
 shape = SubResource("RectangleShape2D_xs2ng")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(640, 360)
+position = Vector2(6304, -1360)
 script = ExtResource("3_psxih")
 
 [node name="Player" parent="." instance=ExtResource("3_ak11n")]
-position = Vector2(320, 408)
+position = Vector2(5712, -1136)
 
 [node name="BlockA" type="AnimatableBody2D" parent="."]
 position = Vector2(2904, 24)

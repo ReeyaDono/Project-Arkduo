@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://bveg6nrvy23pa"]
+
+[ext_resource type="SpriteFrames" uid="uid://d1suwce6aj86l" path="res://scenes/player/player2.tres" id="1_7pej5"]
+[ext_resource type="AudioStream" uid="uid://b8co4c0p8wu8o" path="res://assets/10. Interstellar Stomper-[AudioTrimmer.com].mp3" id="2_buwca"]
+
+[node name="BossFight" type="Node2D"]
+
+[node name="TempCamera" type="Camera2D" parent="."]
+
+[node name="BossSprite" type="AnimatedSprite2D" parent="."]
+scale = Vector2(6, 6)
+sprite_frames = ExtResource("1_7pej5")
+animation = &"boss_idle"
+autoplay = "boss_idle"
+frame_progress = 0.284714
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_buwca")
+volume_db = -19.536

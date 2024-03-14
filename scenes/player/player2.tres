@@ -1,6 +1,22 @@
-[gd_resource type="SpriteFrames" load_steps=16 format=3 uid="uid://d1suwce6aj86l"]
+[gd_resource type="SpriteFrames" load_steps=20 format=3 uid="uid://d1suwce6aj86l"]
 
 [ext_resource type="Texture2D" uid="uid://dxcsrashqxacj" path="res://assets/SimpleCharacter/Girl-Sheet-2.png" id="1_w4xru"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_woog1"]
+atlas = ExtResource("1_w4xru")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_psxu8"]
+atlas = ExtResource("1_w4xru")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15h61"]
+atlas = ExtResource("1_w4xru")
+region = Rect2(48, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0jje"]
+atlas = ExtResource("1_w4xru")
+region = Rect2(72, 0, 24, 24)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4khbj"]
 atlas = ExtResource("1_w4xru")
@@ -60,6 +76,23 @@ region = Rect2(792, 0, 24, 24)
 
 [resource]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_woog1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_psxu8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15h61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0jje")
+}],
+"loop": true,
+"name": &"boss_idle",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_4khbj")

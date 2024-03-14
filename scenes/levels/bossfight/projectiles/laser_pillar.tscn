@@ -1,0 +1,45 @@
+[gd_scene load_steps=5 format=3 uid="uid://b2jxl5vngvctt"]
+
+[ext_resource type="Shader" path="res://shaders/laser.gdshader" id="1_lyd38"]
+[ext_resource type="Script" path="res://scenes/levels/bossfight/projectiles/laser_pillar.gd" id="1_mw85c"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_77tb8"]
+resource_local_to_scene = true
+shader = ExtResource("1_lyd38")
+shader_parameter/beams = 3
+shader_parameter/energy = 5.0
+shader_parameter/roughness = 5
+shader_parameter/frequency = 10
+shader_parameter/speed = 1.0
+shader_parameter/thickness = 0.01
+shader_parameter/outline_thickness = 0.02
+shader_parameter/beam_difference = 0.176
+shader_parameter/glow = 0.34
+shader_parameter/outline_glow = 0.189
+shader_parameter/color = Color(0.964706, 0.215686, 0.239216, 1)
+shader_parameter/outline_color = Color(0.792157, 0.294118, 0.337255, 1)
+shader_parameter/progress = 1.0
+shader_parameter/y_offset = 2.375e-08
+shader_parameter/fixed_edge_size = 0.041
+shader_parameter/noise_scale = Vector2(1, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ecp8g"]
+size = Vector2(16, 720)
+
+[node name="LaserPillar" type="Area2D"]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("1_mw85c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_77tb8")
+offset_left = 136.0
+offset_right = 856.0
+offset_bottom = 270.0
+rotation = 1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_ecp8g")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
