@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://dasohii0w60dg"]
+[gd_scene load_steps=9 format=3 uid="uid://dasohii0w60dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/game_display.gd" id="1_uuggt"]
 [ext_resource type="Shader" path="res://shaders/game_display.gdshader" id="2_8kha3"]
 [ext_resource type="PackedScene" uid="uid://c7qmgopekjlcb" path="res://scenes/levels/main_level_a.tscn" id="3_o4ier"]
 [ext_resource type="PackedScene" uid="uid://c2kqgtcm68pr8" path="res://scenes/levels/main_level_b.tscn" id="4_pe7yw"]
 [ext_resource type="PackedScene" uid="uid://ctn5fc4681sgo" path="res://scenes/levels/circle_transition.tscn" id="5_fsouq"]
+[ext_resource type="PackedScene" uid="uid://c7p4ikxhyj0ry" path="res://scenes/levels/bossfight/boss_phase_2_mask.tscn" id="6_daewf"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vpbxv"]
 shader = ExtResource("2_8kha3")
@@ -45,5 +46,16 @@ size = Vector2i(1280, 720)
 
 [node name="circle_transition" parent="ViewportMask" instance=ExtResource("5_fsouq")]
 
+[node name="ViewportMask2" type="SubViewport" parent="."]
+canvas_item_default_texture_filter = 0
+size = Vector2i(1280, 720)
+
+[node name="BossPhase2Mask" parent="ViewportMask2" instance=ExtResource("6_daewf")]
+
 [node name="SwitchCooldownTimer" type="Timer" parent="."]
 one_shot = true
+
+[connection signal="phase2_started" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_started"]
+[connection signal="phase2_toggle_base" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_base"]
+[connection signal="phase2_toggle_laser" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_laser"]
+[connection signal="phase2_toggle_spiral" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_spiral"]

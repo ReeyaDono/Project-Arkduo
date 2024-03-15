@@ -590,4 +590,8 @@ metadata/_edit_lock_ = true
 [connection signal="hit" from="ResetArea" to="." method="_on_hit"]
 [connection signal="fight_finished" from="BossFight" to="." method="_on_bossfight_finish"]
 [connection signal="hit" from="BossFight" to="." method="_on_hit"]
+[connection signal="phase2_started" from="BossFight" to="." method="_on_boss_fight_phase_2_started"]
+[connection signal="phase2_toggle_base" from="BossFight" to="." method="_on_boss_fight_phase_2_toggle_base"]
+[connection signal="phase2_toggle_laser" from="BossFight" to="." method="_on_boss_fight_phase_2_toggle_laser"]
+[connection signal="phase2_toggle_spiral" from="BossFight" to="." method="_on_boss_fight_phase_2_toggle_spiral"]
 [connection signal="body_entered" from="BossTrigger" to="BossTrigger" method="_on_body_entered"]

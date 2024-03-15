@@ -2,6 +2,10 @@ extends Node2D
 
 signal fight_finished
 signal hit
+signal phase2_started
+signal phase2_toggle_base
+signal phase2_toggle_spiral
+signal phase2_toggle_laser
 
 @export var boss_seed: int = 0
 
@@ -20,3 +24,15 @@ func start_fight():
 	
 func finish_fight():
 	fight_finished.emit()
+	
+func start_phase2():
+	phase2_started.emit()
+
+func toggle_base_phase2():
+	phase2_toggle_base.emit()
+	
+func toggle_spiral_phase2():
+	phase2_toggle_spiral.emit()
+	
+func toggle_laser_phase2():
+	phase2_toggle_laser.emit()
