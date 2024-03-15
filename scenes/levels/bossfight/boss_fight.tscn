@@ -920,3 +920,21 @@ scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_40w7x")
 autoplay = "default"
 frame_progress = 0.176808
+
+[connection signal="hit" from="FireballSpawner" to="." method="_on_projectile_hit"]
+[connection signal="hit" from="LightningSpawner" to="." method="_on_projectile_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning2" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning3" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning4" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning5" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning6" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning7" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning8" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning9" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LightningSpawner/Ligthning10" to="LightningSpawner" method="_on_lightning_hit"]
+[connection signal="hit" from="LaserPilarSpawner" to="." method="_on_projectile_hit"]
+[connection signal="hit" from="LaserSpinAttack" to="." method="_on_projectile_hit"]
+[connection signal="hit" from="LaserSpinAttack/LaserPillar" to="LaserSpinAttack" method="_on_laser_hit"]
+[connection signal="hit" from="LaserSpinAttack/LaserPillar2" to="LaserSpinAttack" method="_on_laser_hit"]
+[connection signal="hit" from="LaserSpinAttack/LaserPillar3" to="LaserSpinAttack" method="_on_laser_hit"]

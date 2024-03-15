@@ -13,7 +13,7 @@ func _strike():
 
 func _on_body_entered(body):
 	hit.emit()
-	print("Hit with lightning")
+	# print("Hit with lightning")
 
 func _on_animated_sprite_2d_frame_changed():
 	var frame_num = $AnimatedSprite2D.get_frame()

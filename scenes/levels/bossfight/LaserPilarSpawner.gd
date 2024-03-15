@@ -1,5 +1,7 @@
 extends Node2D
 
+signal hit
+
 @export var type_toggle: bool = false
 @export var boss_seed: int = 0
 @onready var rng = RandomNumberGenerator.new()
@@ -36,6 +38,7 @@ func spawn_pillar_left():
 
 func _create_pillar(type: String):
 	var laser_pillar = laser_pillar_scene.instantiate()
+	laser_pillar.hit.connect(_on_laser_hit)
 	if type == "A":
 		laser_pillar.type_toggle = false
 		laser_pillar.a_side_collision_toggle = true
@@ -51,3 +54,5 @@ func _create_pillar(type: String):
 			
 	return laser_pillar
 	
+func _on_laser_hit():
+	hit.emit()

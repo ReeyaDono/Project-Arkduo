@@ -1,6 +1,8 @@
 extends Node2D
+signal hit
 
 @export var boss_seed: int = 0
+@export var activate_hit_scanner: bool = true
 @onready var rng = RandomNumberGenerator.new()
 
 var pos1 = Vector2(-96, -16)
@@ -18,10 +20,15 @@ const fireball_scene = preload("res://scenes/levels/bossfight/projectiles/fireba
 func _create_fireball(pos: Vector2, angle: float):
 	#print("Spawn angle: " + str(angle))
 	var fireball = fireball_scene.instantiate()
+	fireball.hit.connect(_on_fireball_hit)
 	add_child(fireball)
 	fireball.position = pos
 	fireball.rotation = angle
 	fireball.start_moving()
+	
+func _on_fireball_hit():
+	if activate_hit_scanner:
+		hit.emit()
 
 func spawn_fireball():
 	_create_fireball(pos1, rng.randf_range(90, 91))

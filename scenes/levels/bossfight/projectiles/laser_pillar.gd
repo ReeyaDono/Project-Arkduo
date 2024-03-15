@@ -23,9 +23,9 @@ func _process(_delta):
 func _on_body_entered(body):
 	# Case mask 1 & 3
 	if body.get_collision_mask_value(3) and a_side_collision_toggle:
-		print("hit with laser A")
+		#print("hit with laser A")
 		hit.emit()
 	# Case mask 1 & 4
 	elif body.get_collision_mask_value(4) and b_side_collision_toggle:
-		print("hit with laser B")
+		#print("hit with laser B")
 		hit.emit()

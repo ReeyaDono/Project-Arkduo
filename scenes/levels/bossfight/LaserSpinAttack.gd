@@ -1,6 +1,9 @@
 extends Node2D
 
+signal hit
+
 @onready var lasers = [$LaserPillar, $LaserPillar2, $LaserPillar3]
+@export var activate_hit_scanner: bool = true
 var max_angle = 0.5
 
 # Called when the node enters the scene tree for the first time.
@@ -29,3 +32,7 @@ func _tween_right(idx: int):
 	tween.tween_property(lasers[idx], "rotation", lasers[idx].rotation+max_angle, 2)
 	tween.tween_property(lasers[idx], "rotation", lasers[idx].rotation-max_angle, 2)
 	tween.tween_callback(_tween_left.bind(idx))
+
+func _on_laser_hit():
+	if activate_hit_scanner:
+		hit.emit()

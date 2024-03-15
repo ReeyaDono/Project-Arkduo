@@ -1,7 +1,10 @@
 extends Node2D
 
+signal hit
+
 @onready var lightnings = [$Ligthning, $Ligthning2, $Ligthning3, $Ligthning4, $Ligthning5, $Ligthning6, $Ligthning7, $Ligthning8, $Ligthning9, $Ligthning10]
 @export var boss_seed: int = 0
+@export var activate_hit_scanner: bool = true
 @onready var rng = RandomNumberGenerator.new()
 
 func _get_random_num():
@@ -12,6 +15,10 @@ func _get_random_num():
 			numbers.append(num)
 	
 	return numbers
+	
+func _on_lightning_hit():
+	if activate_hit_scanner:
+		hit.emit()
 	
 func init_seed():
 	rng.seed = boss_seed

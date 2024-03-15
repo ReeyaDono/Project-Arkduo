@@ -817,9 +817,11 @@ volume_db = -19.536
 
 [node name="FireballSpawner" type="Node2D" parent="."]
 script = ExtResource("3_83x74")
+activate_hit_scanner = false
 
 [node name="LightningSpawner" type="Node2D" parent="."]
 script = ExtResource("4_t5771")
+activate_hit_scanner = false
 
 [node name="Ligthning" parent="LightningSpawner" instance=ExtResource("5_wd3a3")]
 position = Vector2(-568, 48)
@@ -868,6 +870,7 @@ type_toggle = true
 [node name="LaserSpinAttack" type="Node2D" parent="."]
 position = Vector2(0, -96)
 script = ExtResource("7_5482m")
+activate_hit_scanner = false
 
 [node name="LaserPillar" parent="LaserSpinAttack" instance=ExtResource("8_xuywk")]
 laser_progress = 0.0

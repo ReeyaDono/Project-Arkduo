@@ -1,8 +1,13 @@
 extends Node2D
 
 signal fight_finished
+signal hit
 
 @export var boss_seed: int = 0
+
+func _on_projectile_hit():
+	hit.emit()
+	#print("Hit in bossfight A")
 
 func start_fight():
 	$FireballSpawner.boss_seed = boss_seed
