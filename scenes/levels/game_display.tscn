@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://dasohii0w60dg"]
+[gd_scene load_steps=49 format=3 uid="uid://dasohii0w60dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/game_display.gd" id="1_uuggt"]
 [ext_resource type="Shader" path="res://shaders/game_display.gdshader" id="2_8kha3"]
@@ -6,11 +6,255 @@
 [ext_resource type="PackedScene" uid="uid://c2kqgtcm68pr8" path="res://scenes/levels/main_level_b.tscn" id="4_pe7yw"]
 [ext_resource type="PackedScene" uid="uid://ctn5fc4681sgo" path="res://scenes/levels/circle_transition.tscn" id="5_fsouq"]
 [ext_resource type="PackedScene" uid="uid://c7p4ikxhyj0ry" path="res://scenes/levels/bossfight/boss_phase_2_mask.tscn" id="6_daewf"]
+[ext_resource type="FontFile" uid="uid://c3a6jxnai6qpy" path="res://assets/MinimalPixel v2.ttf" id="7_4vdd0"]
+[ext_resource type="Shader" path="res://shaders/grayscale.gdshader" id="8_2pgeg"]
+[ext_resource type="Shader" path="res://shaders/circle.gdshader" id="8_3qkn2"]
+[ext_resource type="Texture2D" uid="uid://d2juvulb80ni5" path="res://assets/pipo-nazoobj05c_192.png" id="9_gvoas"]
+[ext_resource type="Shader" path="res://shaders/glitch.gdshader" id="11_yw57r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vpbxv"]
 shader = ExtResource("2_8kha3")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pwk0w"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_2bu5x"]
+font = ExtResource("7_4vdd0")
+font_size = 31
+font_color = Color(0.380392, 0.545098, 0.996078, 1)
+outline_color = Color(0, 0, 0, 1)
+shadow_color = Color(0, 0, 0, 0.278431)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_aiu3s"]
+shader = ExtResource("8_3qkn2")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6cm8l"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_00vhl"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3g5os"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_r603v"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf33c"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 0, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p3w14"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4wmjr"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mii2u"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6jtr0"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1g3hi"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 192, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v8nit"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc0cc"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4cglx"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qaa06"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tfvyu"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 384, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nbugb"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gc3up"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_brqsa"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ye41d"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqb32"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 576, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p56rj"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_12kkc"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hovv8"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pubvh"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e32uu"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 768, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6r15"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(0, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ktf68"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(192, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vpbto"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(384, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jmo70"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(576, 960, 192, 192)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ju7xa"]
+atlas = ExtResource("9_gvoas")
+region = Rect2(768, 960, 192, 192)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_58ius"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6cm8l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_00vhl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3g5os")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_r603v")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf33c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p3w14")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4wmjr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mii2u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6jtr0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1g3hi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v8nit")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc0cc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4cglx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qaa06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tfvyu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nbugb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gc3up")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_brqsa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ye41d")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqb32")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p56rj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_12kkc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hovv8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pubvh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e32uu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6r15")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ktf68")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vpbto")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jmo70")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ju7xa")
+}],
+"loop": true,
+"name": &"default",
+"speed": 30.0
+}]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ecvfv"]
+shader = ExtResource("8_2pgeg")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_5hia3"]
+shader = ExtResource("11_yw57r")
+shader_parameter/shake_power = 0.01
+shader_parameter/shake_rate = 0.018
+shader_parameter/shake_speed = 10.0
+shader_parameter/shake_block_size = 50.0
+shader_parameter/shake_color_rate = 0.004
 
 [node name="GameDisplay" type="Control"]
 layout_mode = 3
@@ -55,7 +299,55 @@ size = Vector2i(1280, 720)
 [node name="SwitchCooldownTimer" type="Timer" parent="."]
 one_shot = true
 
+[node name="HitLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 11.0
+offset_right = 311.0
+offset_bottom = 120.0
+text = "Deaths: 0"
+label_settings = SubResource("LabelSettings_2bu5x")
+
+[node name="SwitchIndicator" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_aiu3s")
+layout_mode = 0
+offset_left = 28.0
+offset_top = 79.0
+offset_right = 128.0
+offset_bottom = 179.0
+pivot_offset = Vector2(50, 50)
+color = Color(0.321569, 0, 0.239216, 1)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="SwitchIndicator"]
+position = Vector2(50, 50)
+sprite_frames = SubResource("SpriteFrames_58ius")
+autoplay = "default"
+metadata/_edit_lock_ = true
+
+[node name="CooldownIndicator" type="ColorRect" parent="SwitchIndicator"]
+visible = false
+material = SubResource("ShaderMaterial_ecvfv")
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="Glitch" type="ColorRect" parent="SwitchIndicator"]
+visible = false
+material = SubResource("ShaderMaterial_5hia3")
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 100.0
+
+[node name="BlackFade" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1281.0
+offset_bottom = 718.0
+color = Color(0, 0, 0, 1)
+
+[connection signal="fight_finished" from="ViewportA/main_level_a" to="." method="_on_fight_finished"]
+[connection signal="hit" from="ViewportA/main_level_a" to="." method="_on_hit"]
 [connection signal="phase2_started" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_started"]
 [connection signal="phase2_toggle_base" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_base"]
 [connection signal="phase2_toggle_laser" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_laser"]
 [connection signal="phase2_toggle_spiral" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_spiral"]
+[connection signal="timeout" from="SwitchCooldownTimer" to="." method="_on_switch_cooldown_timer_timeout"]
