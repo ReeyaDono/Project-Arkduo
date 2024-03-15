@@ -937,6 +937,7 @@ autoplay = "default"
 frame_progress = 0.176808
 
 [node name="Glitch" type="ColorRect" parent="Sprite"]
+visible = false
 material = SubResource("ShaderMaterial_cv5o1")
 offset_left = -16.0
 offset_top = -88.0

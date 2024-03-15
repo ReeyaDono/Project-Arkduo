@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqhsc8hea8wrj"]
+
+[ext_resource type="PackedScene" uid="uid://drqmn0o7kbgxl" path="res://scenes/backgrounds/background_a.tscn" id="1_cjun3"]
+[ext_resource type="SpriteFrames" uid="uid://di4b3ywotbtqu" path="res://scenes/player/player1.tres" id="2_7g3by"]
+
+[node name="MenuBgA" type="Node2D"]
+
+[node name="BackgroundA" parent="." instance=ExtResource("1_cjun3")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 250)
+scale = Vector2(5, 5)
+sprite_frames = ExtResource("2_7g3by")
+animation = &"boss_idle"
+autoplay = "boss_idle"

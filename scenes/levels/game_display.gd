@@ -36,6 +36,11 @@ func _open_screen():
 func _close_screen():
 	var tween = create_tween()
 	tween.tween_property(black_fade, "modulate:a", 1, 0.5)
+	tween.tween_callback(_show_score)
+
+func _show_score():
+	$FinalMenu/FinalLabel.text = "Deaths: " + str(num_hit)
+	$FinalMenu.visible = true
 
 func _switch_is_on_cooldown():
 	return switch_cooldown_timer.time_left > 0.0
@@ -76,3 +81,8 @@ func _on_switch_cooldown_timer_timeout():
 
 func _on_fight_finished():
 	_close_screen()
+	
+
+
+func _on_menu_pressed():
+	get_tree().change_scene_to_file("res://scenes/menu/main_menu.tscn")

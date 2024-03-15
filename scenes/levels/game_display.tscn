@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://dasohii0w60dg"]
+[gd_scene load_steps=50 format=3 uid="uid://dasohii0w60dg"]
 
 [ext_resource type="Script" path="res://scenes/levels/game_display.gd" id="1_uuggt"]
 [ext_resource type="Shader" path="res://shaders/game_display.gdshader" id="2_8kha3"]
@@ -13,9 +13,11 @@
 [ext_resource type="Shader" path="res://shaders/glitch.gdshader" id="11_yw57r"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vpbxv"]
+resource_local_to_scene = true
 shader = ExtResource("2_8kha3")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_pwk0w"]
+specular_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_2bu5x"]
 font = ExtResource("7_4vdd0")
@@ -256,6 +258,13 @@ shader_parameter/shake_speed = 10.0
 shader_parameter/shake_block_size = 50.0
 shader_parameter/shake_color_rate = 0.004
 
+[sub_resource type="LabelSettings" id="LabelSettings_7xqbv"]
+font = ExtResource("7_4vdd0")
+font_size = 43
+font_color = Color(0.803922, 1, 1, 1)
+outline_size = 3
+outline_color = Color(0.0588235, 0.505882, 1, 1)
+
 [node name="GameDisplay" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -344,6 +353,29 @@ offset_right = 1281.0
 offset_bottom = 718.0
 color = Color(0, 0, 0, 1)
 
+[node name="FinalMenu" type="Control" parent="."]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="FinalLabel" type="Label" parent="FinalMenu"]
+layout_mode = 0
+offset_left = 480.0
+offset_top = 288.0
+offset_right = 653.0
+offset_bottom = 331.0
+text = "Deaths: "
+label_settings = SubResource("LabelSettings_7xqbv")
+
+[node name="Menu" type="Button" parent="FinalMenu"]
+layout_mode = 0
+offset_left = 512.0
+offset_top = 368.0
+offset_right = 640.0
+offset_bottom = 416.0
+text = "Menu"
+
 [connection signal="fight_finished" from="ViewportA/main_level_a" to="." method="_on_fight_finished"]
 [connection signal="hit" from="ViewportA/main_level_a" to="." method="_on_hit"]
 [connection signal="phase2_started" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_started"]
@@ -351,3 +383,4 @@ color = Color(0, 0, 0, 1)
 [connection signal="phase2_toggle_laser" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_laser"]
 [connection signal="phase2_toggle_spiral" from="ViewportA/main_level_a" to="." method="_on_main_level_a_phase_2_toggle_spiral"]
 [connection signal="timeout" from="SwitchCooldownTimer" to="." method="_on_switch_cooldown_timer_timeout"]
+[connection signal="pressed" from="FinalMenu/Menu" to="." method="_on_menu_pressed"]
